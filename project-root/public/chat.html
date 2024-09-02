@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot com Anexos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            Chatbot de Simulação de Crédito
+        </div>
+        <div class="chat-messages" id="chat-messages">
+         
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+            <button onclick="sendMessage()">Enviar</button>
+            <div class="attachment-buttons">
+                <label for="file-upload" class="custom-file-upload">
+                    📎
+                </label>
+                <input id="file-upload" type="file" accept="image/*,application/pdf">
+                <button onclick="takePhoto()">📷</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
