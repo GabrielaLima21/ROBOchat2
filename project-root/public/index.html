@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Chat - Análise de Crédito</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-interface">
+        <div class="chat-header">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>Chat de Análise de Crédito</h1>
+        </div>
+        <div id="chat-box" class="chat-box">
+            <!-- Mensagens do chat vão aparecer aqui -->
+        </div>
+        <div class="input-area">
+            <input type="file" id="fileInput" accept=".pdf" class="file-input">
+            <input type="text" id="userInput" placeholder="Digite sua pergunta..." class="text-input">
+            <button onclick="sendMessage()" class="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function addMessageToChatbox(message, sender) {
+            const chatBox = document.getElementById('chat-box');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', sender);
+            messageElement.innerText = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput').value;
+            if (input.trim() === '') return;
+            addMessageToChatbox(input, "user");
+            document.getElementById('userInput').value = '';
+
+            // Simulação de resposta do bot
+            setTimeout(() => {
+                addMessageToChatbox("Estamos analisando sua solicitação...", "bot");
+            }, 1000);
+
+            // Simulação de upload e resposta
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    addMessageToChatbox(data.response, "bot");
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    addMessageToChatbox("Erro ao processar o arquivo.", "bot");
+                });
+            }
+        }
+    </script>
+</body>
+</html>
