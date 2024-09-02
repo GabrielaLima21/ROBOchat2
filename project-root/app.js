@@ -5,7 +5,49 @@ const upload = multer({ dest: 'uploads/' });
 
 let firstInteraction = true;
 
+// Configuração para processar dados de formulário
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static('public')); // Serve arquivos estáticos como HTML e CSS
+
+// Rota para tela de login
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/public/login.html');
+});
+
+// Rota para tela de cadastro
+app.get('/register', (req, res) => {
+    res.sendFile(__dirname + '/public/register.html');
+});
+
+// Rota para tela de recuperação de senha
+app.get('/forgot-password', (req, res) => {
+    res.sendFile(__dirname + '/public/forgot-password.html');
+});
+
+// Processamento do login (simulação)
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    console.log(`Tentativa de login: ${email} - ${password}`);
+    // Adicione a lógica de autenticação aqui
+    res.redirect('/');
+});
+
+// Processamento do cadastro (simulação)
+app.post('/register', (req, res) => {
+    const { name, email, password } = req.body;
+    console.log(`Novo cadastro: ${name}, ${email}, ${password}`);
+    // Adicione a lógica de armazenamento de usuário aqui
+    res.redirect('/login');
+});
+
+// Processamento de recuperação de senha (simulação)
+app.post('/forgot-password', (req, res) => {
+    const { email } = req.body;
+    console.log(`Recuperação de senha solicitada para: ${email}`);
+    // Adicione a lógica de recuperação de senha aqui
+    res.redirect('/login');
+});
 
 app.post('/upload', upload.single('file'), (req, res) => {
   if (firstInteraction) {
