@@ -51,26 +51,25 @@ app.post('/upload', upload.single('file'), (req, res) => {
         res.json({
             response: `
                 Nome: João da Silva
-                Idade: 42 anos
-                Profissão: Autônomo (pintor)
-                Renda Mensal: R$ 2.500
-                Endereço: Bairro de periferia, São Paulo - SP
                 Score de Crédito: 350 (baixo)
-                Histórico Financeiro: 3 financiamentos atrasados nos últimos 2 anos, 2 cartões de crédito cancelados por falta de pagamento, Restrição no nome devido a um empréstimo pessoal não pago há mais de 6 meses.
-                Perfil de Risco: Altamente arriscado para novas concessões de crédito.
+                CPF: 987.654.321-00 (fictício)
+                Propriedades declaradas: 
+                Imóvel residencial? Não, declara que não possui casa própria, porém investigações indicam que possui um apartamento não registrado.
+                Veículo automotor? Sim, possui uma HB20 modelo 2020, cor preta, registrado em seu nome.
+                Outros bens? Não há informações adicionais declaradas, mas existem indícios de outros bens ocultos.
+
             `
         });
     } else {
         res.json({
             response: `
                 Nome: Marina Santos
-                Idade: 34 anos
-                Profissão: Analista de Sistemas em uma multinacional
-                Renda Mensal: R$ 10.000
-                Endereço: Bairro nobre, Rio de Janeiro - RJ
                 Score de Crédito: 850 (excelente)
-                Histórico Financeiro: Financiamento de imóvel quitado, 2 cartões de crédito com limite alto e fatura sempre paga antes do vencimento, Empréstimo de carro quitado dentro do prazo.
-                Perfil de Risco: Baixo risco, excelente histórico financeiro.
+                CPF: 123.456.789-00
+                Propriedades declaradas: 
+                Imóvel residencial? Sim, possui casa própria localizada em São Paulo, SP.
+                Veículo automotor? Não, declara que não possui veículo, entretanto, há evidências de que possui um corsa modelo 2018, cor prata, registrado em nome de outra pessoa.
+                Outros bens? Não possui outros bens declarados.
             `
         });
     }
